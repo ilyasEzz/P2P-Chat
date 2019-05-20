@@ -59,8 +59,7 @@ while True:
             clients[clientSocket] = user
             print(f"Accepted new connection from {clientAddress[0]}:{clientAddress[1]}, username: {user['data'].decode('utf-8')}")
 
-
-        """ If someone disconnect """
+        # If someone disconnect 
         else:
             message = recieveMessage(notifiedSocket)
 
@@ -73,7 +72,7 @@ while True:
             user = clients[notifiedSocket]
             print(f"Recieved message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
 
-            """ Sharing the message with everyone """
+           #  Sharing the message with everyone 
             for clientSocket in clients:
                 if clientSocket is not notifiedSocket:
                     clientSocket.send(user['header'] + user['data'] + message['header'] + message['data'])
